@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sh'''
                 ls -la
-                cd Portfolio
+                cd portfolio
                 npm install
                 npm run build
                 '''
