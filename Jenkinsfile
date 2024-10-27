@@ -5,14 +5,15 @@ pipeline {
         stage('Hello') {
           agent{
             docker{
-              image 'node:16-alpine'
+              image 'node:18-alpine'
              reuseNode true
             }
             }
             steps {
+            dir('portfolio'):
                 sh'''
                 ls -la
-                cd portfolio/
+                 npm ci
                 npm run build
                 '''
             }
