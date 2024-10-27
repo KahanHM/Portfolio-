@@ -10,7 +10,7 @@ pipeline {
             }
             }
             steps {
-            dir('portfolio'):{
+            dir('portfolio'){
                 sh'''
                 ls -la
                  npm ci
