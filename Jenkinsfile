@@ -12,6 +12,7 @@ pipeline {
             steps {
                 sh'''
                 ls -la
+                cd portfolio/
                 npm run build
                 '''
             }
