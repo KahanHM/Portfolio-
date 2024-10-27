@@ -6,12 +6,12 @@ pipeline {
           agent{
             docker{
               image 'node:16-alpine'
+             reuseNode true
             }
             }
             steps {
                 sh'''
                 ls -la
-                cd portfolio
                 npm install
                 npm run build
                 '''
