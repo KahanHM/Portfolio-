@@ -16,7 +16,7 @@ pipeline {
             }
         stage('clone') {
                  steps {
-                    sh 'docker run -p 3000:80 app "
+                    sh 'docker run -p 3000:80 app '
                 }
             }
     }  
