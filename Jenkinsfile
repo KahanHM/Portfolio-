@@ -5,19 +5,19 @@ pipeline {
     stages {
         stage('clone') {
                  steps {
-                    sh 'git clone https://github.com/KahanHM/Portfolio-.git'
+                    sh 'sudo git clone https://github.com/KahanHM/Portfolio-.git'
                      sh "cd Portfolio"
-                    sh "git pull"
+                    sh "sudo git pull"
                 }
             }
             stage('built') {
                  steps {
-                    sh 'docker build -t app .'
+                    sh 'sudo docker build -t app .'
                 }
             }
         stage('run') {
                  steps {
-                    sh 'docker run -p 3000:80 app '
+                    sh 'sudo docker run -p 3000:80 app '
                 }
             }
     }  
