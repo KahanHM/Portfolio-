@@ -14,7 +14,7 @@ pipeline {
                     sh 'docker build -t app .'
                 }
             }
-        stage('clone') {
+        stage('run') {
                  steps {
                     sh 'docker run -p 3000:80 app '
                 }
