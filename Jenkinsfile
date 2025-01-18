@@ -5,7 +5,8 @@ pipeline {
     stages {
         stage('clone') {
                  steps {
-                    sh 'git clone'
+                    sh 'git clone https://github.com/KahanHM/Portfolio-.git'
+                     sh "cd Portfolio"
                     sh "git pull"
                 }
             }
