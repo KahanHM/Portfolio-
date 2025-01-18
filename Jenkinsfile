@@ -1,23 +1,24 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Hello') {
-          agent{
-            docker{
-              image 'node:18-alpine'
-             reuseNode true
-            }
-            }
-            steps {
-            dir('portfolio'){
-                sh'''
-                ls -la
-                 npm ci
-                npm run build
-                '''
-            }
-            }
-        }
+    agent {
+        label 'Dev' // Ensures the pipeline runs on the 'Dev' agent
     }
+    stages {
+        stage('clone') {
+                 steps {
+                    sh 'git clone'
+                    sh "git pull"
+                }
+            }
+            stage('built') {
+                 steps {
+                    sh 'docker build -t app .'
+                }
+            }
+        stage('clone') {
+                 steps {
+                    sh 'docker run -p 3000:80 app "
+                }
+            }
+    }  
+
 }
