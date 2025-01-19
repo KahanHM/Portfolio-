@@ -4,14 +4,18 @@ FROM gcr.io/distroless/nodejs:16
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy the package.json and package-lock.json files
+COPY package*.json ./
 
+# Install the dependencies
+RUN npm install
 
-# Make port 3000 available to the world outside this container
+# Copy the rest of the application files
+COPY . .
+
+# Expose the application port
 EXPOSE 3000
 
-
-# Run the application when the container starts
+# Start the Node.js application
 CMD ["npm", "start"]
 
