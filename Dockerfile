@@ -1,6 +1,8 @@
 # Use an official Node.js runtime as a parent image
 FROM gcr.io/distroless/nodejs:16
 
+# Install bash or sh if not already included
+RUN apk add --no-cache bash
 # Set the working directory inside the container
 WORKDIR /app
 
