@@ -4,22 +4,26 @@ pipeline {
     }
     stages {
         stage('clone') {
-                 steps {
-                    sh "git clone https://github.com/KahanHM/Portfolio-.git"
-                     sh "cd Portfolio/portpolio"
-                    sh "git pull"
-                }
+            steps {
+                // Use Jenkins' built-in SCM checkout
+                checkout([
+                    $class: 'GitSCM', 
+                    branches: [[name: '*/main']], // Replace 'main' with your branch name
+                    userRemoteConfigs: [[url: 'https://github.com/KahanHM/Portfolio-.git']]
+                ])
+                // Navigate to the cloned repository folder
+                sh "cd Portfolio/portpolio && git pull"
             }
-            stage('built') {
-                 steps {
-                    sh 'docker build -t app .'
-                }
+        }
+        stage('build') {
+            steps {
+                sh 'docker build -t app .'
             }
+        }
         stage('run') {
-                 steps {
-                    sh 'docker run -p 3000:80 app '
-                }
+            steps {
+                sh 'docker run -p 3000:80 app'
             }
-    }  
-
+        }
+    }
 }
