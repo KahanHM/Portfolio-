@@ -12,18 +12,16 @@ pipeline {
                     userRemoteConfigs: [[url: 'https://github.com/KahanHM/Portfolio-.git']]
                 ])
                 // Navigate to the cloned repository folder
-                sh "cd Portfolio/portpolio && git pull"
+               
             }
         }
         stage('build') {
             steps {
+                sh "cd portpolio"
                 sh 'docker build -t app .'
-            }
-        }
-        stage('run') {
-            steps {
                 sh 'docker run -p 3000:80 app'
             }
         }
+        
     }
 }
